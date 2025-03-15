@@ -1,0 +1,35 @@
+name: Sync to Remote
+
+on:
+  push:
+    branches:
+      - "**"  # Trigger on all branches
+  workflow_dispatch:  # Enable manual runs
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up SSH key for access to the remote server
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.REMOTE_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+
+      # Step 3: Sync 'content' directory to the remote server
+      - name: Sync content files to remote server
+        run: |
+          rsync -avz --delete ./content/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:/tmp/repo_sync/
+
+      # Step 4: Copy files to the final destination and clean up
+      - name: Copy files to destination and cleanup
+        run: |
+          ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "sudo cp -r /tmp/repo_sync/* ${{ secrets.REMOTE_DIRECTORY }} && sudo rm -rf /tmp/repo_sync"
+
