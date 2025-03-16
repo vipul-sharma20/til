@@ -1,6 +1,12 @@
 ---
 title: Obsidian Graph Visualization
 draft: false
+date: 2025-03-03
+tags:
+  - note-taking
+  - vim
+  - nvim
+  - vimwiki
 ---
 
 I plugged my [Vimwiki] notes as [Obsidian][obsidian] vault.
