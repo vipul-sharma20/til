@@ -1,9 +1,9 @@
 ---
 title: Bambulab Z-axis Issue
 draft: false
+date: 2025-03-14
 tags:
   - 3d-printing
-date: 2025-03-14
 ---
 
 I was printing a [BB Gun][bb-gun] and while starting the print job, I got an
