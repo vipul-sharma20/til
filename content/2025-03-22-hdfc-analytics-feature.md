@@ -14,7 +14,7 @@ statements called [`hdfc-analytics`][hdfc-analytics].
 The tool goes through your account statement / credit card statement and tags
 it based on the category configs that you provide.
 
-> ![NOTE]
+> [!NOTE]
 > Better documentation is in the repository and maintained more than the
 > content in this post below
 
@@ -32,7 +32,7 @@ keywords that are searched for in the transaction descriptions or summaries of
 account statements. Transactions are then categorized based on the
 corresponding category specified in the TOML configuration.
 
->![NOTE]
+>[!NOTE]
 > All the configs / examples are just samples
 
 ```toml
